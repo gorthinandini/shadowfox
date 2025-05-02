@@ -48,7 +48,7 @@ Horizontally scrollable product cards with images, prices, discounts, and "Conta
 Clothing Categories: Grid of cards highlighting Cotton Clothes, Party Wear, Night Clothes, and Sportswear with product lists.
 Parallax Section: Fixed background promoting exclusive collections with a call-to-action.
 Newsletter Signup: Simulated subscription form with a gradient background.
-Footer: Includes privacy policy, terms, contact links, and social media icons (Facebook, Instagram, Twitter, Pinterest).
+Footer: Includes privacy policy, terms, contact links, and social media icons.
 Animations: Custom CSS animations for fade-in, slide-up, and hover effects.
 Responsive Design: Optimized for mobile, tablet, and desktop with flexible grids and media queries.
 Interactivity: Smooth scrolling for anchor links and simulated supplier contact functionality via alerts.
@@ -57,7 +57,7 @@ Sell Online Page (sell.html)
 
 Fixed Navigation Bar: Includes SVG logo, links to Home, Explore, Shopping, Support, FAQ, and a "Start Selling" button.
 Hero Section: Parallax background with a gradient overlay, SVG logo, and a call-to-action to sign up for free.
-Stats Section: Highlights platform impact with metrics (20.6 Crore+ Verified Buyers, 82 Lakh+ Trusted Suppliers, 11.5 Crore+ Products & Services).
+Stats Section: Highlights platform impact with metrics Trusted Suppliers, 11.5 Crore+ Products & Services).
 Registration Section: Simulated sign-up form with mobile number input (sandboxed, alert-based).
 Features Section: Showcases benefits like Expand Your Reach, Zero Cost Selling, and Smart Lead Management.
 Steps Section: Outlines three steps to start selling (Create Account, Add Business, Add Products) with clickable headers.
@@ -106,9 +106,6 @@ Pexels (Fashion Page): High-quality images for product cards and backgrounds.
 Icons8 (Explore Page): Social media and app store icons in the footer.
 SVG: Custom logo rendering in the Sell Page.
 
-Installation
-
-Clone or download the repository:git clone https://github.com/yourusername/indiamart.git
 
 
 Navigate to the project directory:cd indiamart
@@ -235,7 +232,7 @@ Integrate a shopping cart, checkout system, and user authentication.
 Enhance accessibility with more ARIA attributes and WCAG compliance.
 Add lazy loading for images and infinite scroll for products.
 Implement server-side search and filtering for fashion.html and support.html.
-Add dynamic product, stats, and FAQ loading via API for scalability in sell.html and support.html.
+Add dynamic product, stats, and FAQ loading for scalability in sell.html and support.html.
 Integrate real-time live chat functionality with a customer support system in support.html.
 
 Contributing
