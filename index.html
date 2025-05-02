@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .carousel-item {
+            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+        }
+        .carousel-item.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .carousel-item {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        .navbar {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+            transform: translateY(0);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .category-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .newsletter-input {
+            transition: all 0.3s ease;
+        }
+        .newsletter-input:focus {
+            border-color: #facc15;
+            box-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+        }
+        .promo-section {
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            animation: zoomIn 5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="navbar fixed top-0 w-full bg-gradient-to-r from-black to-gray-800 text-white p-4 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-extrabold tracking-tight">INDIA MART</a>
+            <div class="space-x-8 text-lg">
+                <a href="explore.html" class="hover:text-yellow-400 transition animate__animated animate__pulse animate__infinite">Explore</a>
+                <a href="shopping.html" class="hover:text-yellow-400 transition animate__animated animate__pulse animate__infinite">Shopping</a>
+                <a href="sell.html" class="hover:text-yellow-400 transition animate__animated animate__pulse animate__infinite">Sell</a>
+                <a href="support.html" class="hover:text-yellow-400 transition animate__animated animate__pulse animate__infinite">Support</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Carousel -->
+    <section class="relative h-screen">
+        <div class="carousel w-full h-full">
+            <div class="carousel-item absolute w-full h-full bg-cover bg-center active" style="background-image: url('https://images.unsplash.com/photo-1555529669-224bba75ea25?q=80&w=2070&auto=format&fit=crop');">
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <h1 class="text-6xl font-extrabold mb-4 animate__animated animate__zoomIn">Discover ShopTrend</h1>
+                        <p class="text-2xl mb-8 animate__animated animate__fadeInUp animate__delay-1s">Your one-stop shop for all categories</p>
+                        <a href="explore.html" class="bg-yellow-400 text-black px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition animate__animated animate__bounceIn animate__delay-2s">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item absolute w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1445205170230-3b737c0055c8?q=80&w=2070&auto=format&fit=crop');">
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <h1 class="text-6xl font-extrabold mb-4 animate__animated animate__zoomIn">Sell with Ease</h1>
+                        <p class="text-2xl mb-8 animate__animated animate__fadeInUp animate__delay-1s">Join our marketplace and reach millions</p>
+                        <a href="sell.html" class="bg-yellow-400 text-black px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition animate__animated animate__bounceIn animate__delay-2s">Start Selling</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item absolute w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=2070&auto=format&fit=crop');">
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <h1 class="text-6xl font-extrabold mb-4 animate__animated animate__zoomIn">Curated Collections</h1>
+                        <p class="text-2xl mb-8 animate__animated animate__fadeInUp animate__delay-1s">Explore exclusive products tailored for you</p>
+                        <a href="shopping.html" class="bg-yellow-400 text-black px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition animate__animated animate__bounceIn animate__delay-2s">Browse Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="absolute top-1/2 left-4 text-white text-4xl hover:text-yellow-400 transition" onclick="prevSlide()">❮</button>
+        <button class="absolute top-1/2 right-4 text-white text-4xl hover:text-yellow-400 transition" onclick="nextSlide()">❯</button>
+    </section>
+
+    <!-- Clothes, Fashion & Accessories Section -->
+    <section class="container mx-auto py-16">
+        <h2 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeIn">Clothes, Fashion & Accessories</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=2070&auto=format&fit=crop" alt="Trendy Footwear" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Footwear</h3>
+                    <p class="text-gray-600 mt-2">Step into style with our latest collection</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=2070&auto=format&fit=crop" alt="Stylish Apparel" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Apparel</h3>
+                    <p class="text-gray-600 mt-2">Dress to impress with trendy outfits</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=2070&auto=format&fit=crop" alt="Fashion Accessories" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Accessories</h3>
+                    <p class="text-gray-600 mt-2">Complete your look with stylish add-ons</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Electronic Items Section -->
+    <section class="container mx-auto py-16 bg-gray-100">
+        <h2 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeIn">Electronic Items</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2070&auto=format&fit=crop" alt="High-Performance Laptops" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Laptops</h3>
+                    <p class="text-gray-600 mt-2">High-performance devices for work and play</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=2070&auto=format&fit=crop" alt="Modern High-Performance Smartphone" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Smartphones</h3>
+                    <p class="text-gray-600 mt-2">Stay connected with cutting-edge technology</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop" alt="Immersive Headphones" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Headphones</h3>
+                    <p class="text-gray-600 mt-2">Immersive audio for music lovers</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Electric Material & Equipment Section -->
+    <section class="container mx-auto py-16">
+        <h2 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeIn">Electric Material & Equipment</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Electrical Wiring and Cables" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Wiring & Cables</h3>
+                    <p class="text-gray-600 mt-2">Reliable solutions for electrical setups</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="Electrical Switches and Panels" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Switches & Panels</h3>
+                    <p class="text-gray-600 mt-2">Safe and efficient control systems</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1573152958734-1922c188fba3?q=80&w=2070&auto=format&fit=crop" alt="Energy-Efficient Lighting" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Lighting Solutions</h3>
+                    <p class="text-gray-600 mt-2">Energy-efficient lighting for all spaces</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Building Construction Material & Equipment Section -->
+    <section class="container mx-auto py-16 bg-gray-100">
+        <h2 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeIn">Building Construction Material & Equipment</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1350&q=80" alt="Cement and Concrete" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Cement & Concrete</h3>
+                    <p class="text-gray-600 mt-2">High-quality materials for strong foundations</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop" alt="Steel Reinforcement" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Steel & Reinforcement</h3>
+                    <p class="text-gray-600 mt-2">Durable materials for structural integrity</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop" alt="Assorted Construction Tools for Building Projects" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Construction Tools</h3>
+                    <p class="text-gray-600 mt-2">Essential equipment for all projects</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Prefabricated Houses Section -->
+    <section class="container mx-auto py-16">
+        <h2 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeIn">Prefabricated Houses</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Modular Homes" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Modular Homes</h3>
+                    <p class="text-gray-600 mt-2">Customizable and quick to assemble</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=2070&fit=crop&h=1080" alt="Container Homes" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Container Homes</h3>
+                    <p class="text-gray-600 mt-2">Eco-friendly and modern living solutions</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.pexels.com/photos/803908/pexels-photo-803908.jpeg?auto=compress&cs=tinysrgb&w=2070&fit=crop&h=1080" alt="Prefab Cabins" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Prefab Cabins</h3>
+                    <p class="text-gray-600 mt-2">Cozy retreats for any location</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- Construction Machines Section -->
+    <section class="container mx-auto py-16">
+        <h2 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeIn">Construction Machines</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop" alt="Heavy-Duty Excavators" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Excavators</h3>
+                    <p class="text-gray-600 mt-2">Powerful machines for heavy-duty tasks</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1593642532973-d31b97d0e6b8?auto=format&fit=crop&w=1350&q=80" alt="Construction Cranes" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Cranes</h3>
+                    <p class="text-gray-600 mt-2">Lift and move with precision</p>
+                </div>
+            </a>
+            <a href="explore.html" class="category-card bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                <img src="https://images.unsplash.com/photo-1611599637668-f7f6f4b4a9f6?q=80&w=2070&auto=format&fit=crop" alt="Bulldozers" class="w-full h-64 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-2xl font-semibold">Bulldozers</h3>
+                    <p class="text-gray-600 mt-2">Clear and level any terrain</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+   
+
+
+
+    <!-- Promo Section -->
+    <section class="promo-section py-20 text-center text-white">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold mb-4">Limited Time Offer!</h2>
+            <p class="text-xl mb-6">Get 20% off your first purchase with code: FIRST20</p>
+            <a href="#categories" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="container mx-auto py-16 bg-gray-100">
+        <h2 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeIn">Trending Products</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg hover-scale fade-in">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop" alt="Trendy Sneakers" class="w-full h-48 object-cover rounded">
+                <h3 class="text-xl font-semibold mt-4">Trendy Sneakers</h3>
+                <p class="text-gray-600">$59.99</p>
+                <p class="text-gray-500 text-sm mt-2">Comfort and style in every step</p>
+                <a href="shopping.html" class="block text-center bg-black text-white px-4 py-2 mt-4 rounded hover:bg-gray-800">Add to Cart</a>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg hover-scale fade-in">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop" alt="Mini Excavator" class="w-full h-48 object-cover rounded">
+                <h3 class="text-xl font-semibold mt-4">Mini Excavator</h3>
+                <p class="text-gray-600">$29,999</p>
+                <p class="text-gray-500 text-sm mt-2">Compact power for construction</p>
+                <a href="shopping.html" class="block text-center bg-black text-white px-4 py-2 mt-4 rounded hover:bg-gray-800">Add to Cart</a>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg hover-scale fade-in">
+                <img src="https://images.unsplash.com/photo-1587854691391-d0f2f58db6b9?q=80&w=2070&auto=format&fit=crop" alt="Vitamin Supplements" class="w-full h-48 object-cover rounded">
+                <h3 class="text-xl font-semibold mt-4">Vitamin Supplements</h3>
+                <p class="text-gray-600">$29.99</p>
+                <p class="text-gray-500 text-sm mt-2">Boost your daily wellness</p>
+                <a href="shopping.html" class="block text-center bg-black text-white px-4 py-2 mt-4 rounded hover:bg-gray-800">Add to Cart</a>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg hover-scale fade-in">
+                <img src="https://images.unsplash.com/photo-1582268611958-ebfd7d1a4f22?q=80&w=2070&auto=format&fit=crop" alt="Portland Cement" class="w-full h-48 object-cover rounded">
+                <h3 class="text-xl font-semibold mt-4">Portland Cement</h3>
+                <p class="text-gray-600">$99.99</p>
+                <p class="text-gray-500 text-sm mt-2">High-strength for construction</p>
+                <a href="shopping.html" class="block text-center bg-black text-white px-4 py-2 mt-4 rounded hover:bg-gray-800">Add to Cart</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="container mx-auto py-16">
+        <h2 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeIn">What Our Customers Say</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
+                <p class="text-gray-600 italic">"ShopTrend has everything from fashion to construction materials! The quality is top-notch."</p>
+                <p class="mt-4 font-semibold">Emma S.</p>
+                <div class="flex mt-2 text-yellow-400">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
+                <p class="text-gray-600 italic">"Selling my construction equipment on ShopTrend was so easy and reached a wide audience."</p>
+                <p class="mt-4 font-semibold">James R.</p>
+                <div class="flex mt-2 text-yellow-400">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
+                <p class="text-gray-600 italic">"The pharmacy section has reliable products, and delivery is always on time."</p>
+                <p class="mt-4 font-semibold">Sophia L.</p>
+                <div class="flex mt-2 text-yellow-400">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup Section -->
+    <section class="bg-gradient-to-r from-black to-gray-800 text-white py-16">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6 animate__animated animate__fadeIn">Join Our Newsletter</h2>
+            <p class="text-xl mb-8 animate__animated animate__fadeIn animate__delay-1s">Stay updated with the latest trends and exclusive offers</p>
+            <div class="flex justify-center">
+                <input type="email" placeholder="Enter your email" class="newsletter-input w-full max-w-md p-4 rounded-l-lg text-black focus:outline-none">
+                <button class="bg-yellow-400 text-black px-6 py-4 rounded-r-lg font-semibold hover:bg-yellow-500 transition">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-2xl font-bold mb-4">ShopTrend</h3>
+                <p class="text-gray-400">Your go-to destination for fashion, electronics, construction, and more.</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="explore.html" class="hover:text-yellow-400 transition">Explore</a></li>
+                    <li><a href="sell.html" class="hover:text-yellow-400 transition">Sell</a></li>
+                    <li><a href="shopping.html" class="hover:text-yellow-400 transition">Shopping</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-4">Connect With Us</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-2xl hover:text-yellow-400 transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-2xl hover:text-yellow-400 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-2xl hover:text-yellow-400 transition"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-gray-400">
+            <p>© 2025 ShopTrend. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Auto-slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Fade-in animation on scroll
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeInElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Prevent form submission for newsletter (since forms are sandboxed)
+        const newsletterButton = document.querySelector('.newsletter-input + button');
+        newsletterButton.addEventListener('click', () => {
+            const emailInput = document.querySelector('.newsletter-input');
+            if (emailInput.value) {
+                alert('Thank you for subscribing!');
+                emailInput.value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+    </script>
+</body>
+</html>

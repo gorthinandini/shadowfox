@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndiaMart Explore Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/locomotive-scroll/4.2.2/locomotive-scroll.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Poppins:wght@600&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <style>
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #F4F5F7;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #scroll-container {
+            position: relative;
+        }
+
+    
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes rotateHover {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(5deg); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(231, 76, 60, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(231, 76, 60, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(231, 76, 60, 0.5); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .animate-on-scroll { opacity: 0; animation: zoomIn 0.5s ease-out forwards; }
+        .animate-on-load { animation: fadeInUp 1s ease-out; }
+        .slide-in-left { animation: slideInLeft 0.8s ease-out forwards; }
+        .slide-in-right { animation: slideInRight 0.8s ease-out forwards; }
+        .glow { animation: glow 2s infinite; }
+        .spin { animation: spin 1.5s ease-out; }
+        .category-card:hover { animation: rotateHover 0.3s forwards; }
+
+        
+        .btn {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+      
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            padding: 15px 50px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+
+        .navbar.scrolled {
+            background: linear-gradient(45deg, #1a252f, #2c3e50);
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        .navbar img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 40%;
+            max-width: 500px;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            font-size: 16px;
+            transition: box-shadow 0.3s;
+        }
+
+        .search-container input:focus {
+            box-shadow: 0 0 10px #3498db;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .search-container button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .navbar .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar .buttons button {
+            padding: 10px 20px;
+            border: none;
+            background: #27ae60;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .navbar .buttons button:hover {
+            background: #219150;
+            transform: translateY(-2px);
+        }
+
+       
+        .hero-banner {
+            height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg') no-repeat center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+       
+        .featured-categories {
+            max-width: 1200px;
+            margin: 40px auto;
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-category-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-card.electronics { background: #3498db; color: white; }
+        .category-card.construction { background: #e67e22; color: white; }
+        .category-card.fashion { background: #e91e63; color: white; }
+        .category-card.pharmacy { background: #2ecc71; color: white; }
+        .category-card.home-kitchen { background: #9b59b6; color: white; }
+        .category-card.automotive { background: #c0392b; color: white; }
+
+        .category-card:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .category-card h3 {
+            font-size: 18px;
+        }
+
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: #f0f0f0;
+            
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .company {
+            font-size: 15px;
+            color: #555;
+        }
+
+        .price {
+            font-size: 18px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+       
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .modal-content img {
+            max-width: 400px;
+            height: auto;
+            object-fit: contain;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .modal-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .modal-info {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .modal-info h2 {
+            margin-bottom: 15px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #555;
+        }
+
+       
+        .trending-products {
+            max-width: 1200px;
+            margin: 40px auto;
+            text-align: center;
+            background: linear-gradient(45deg, #ecf0f1, #f4f5f7);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .trending-grid {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scroll-behavior: smooth;
+            scrollbar-width: thin; 
+            scrollbar-color: #3498db #f0f0f0; 
+        }
+
+       
+        .trending-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .trending-grid::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+
+        .trending-grid::-webkit-scrollbar-thumb {
+            background: #3498db;
+            border-radius: 10px;
+        }
+
+        .trending-grid::-webkit-scrollbar-thumb:hover {
+            background: #2980b9;
+        }
+
+        .trending-card {
+            flex: 0 0 250px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .trending-card:hover {
+            transform: scale(1.05);
+        }
+
+        .trending-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .trending-card h3 {
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        
+        .supplier-spotlight {
+            max-width: 1200px;
+            margin: 40px auto;
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .supplier-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .supplier-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .supplier-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .supplier-card img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .supplier-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+       
+        .deals {
+            max-width: 1200px;
+            margin: 40px auto;
+            text-align: center;
+            background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .deal-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .deal-card.glow {
+            border: 2px solid #e74c3c;
+        }
+
+        .deal-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .deal-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .deal-card .discount {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        
+        .blog-highlights {
+            max-width: 1200px;
+            margin: 40px auto;
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .blog-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .blog-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* --- Category Sections --- */
+        .category-section {
+            max-width: 1300px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .category-layout {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .left-section {
+            width: 30%;
+            background: no-repeat center/cover;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 300px;
+        }
+
+        .left-section a {
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .left-section a:hover {
+            color: #1abc9c;
+        }
+
+        .right-section {
+            width: 70%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* --- Testimonials --- */
+        .testimonials {
+            max-width: 1200px;
+            margin: 40px auto;
+            text-align: center;
+            background: linear-gradient(45deg, #dfe6e9, #b2bec3);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonials h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .testimonial-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-card p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card h4 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* --- Newsletter Signup --- */
+        .newsletter {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg') no-repeat center/cover;
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .newsletter form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .newsletter input {
+            padding: 10px;
+            width: 300px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .newsletter button {
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter button:hover {
+            background: #c0392b;
+        }
+
+        /* --- Back to Top Button --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            transition: opacity 0.3s;
+        }
+
+        .back-to-top:hover {
+            background: #2980b9;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-top h2 {
+            font-size: 24px;
+        }
+
+        .footer-top .icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-top .icons img {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .footer-top .icons img:hover {
+            transform: scale(1.1);
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin: 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            color: #1abc9c;
+            margin-bottom: 15px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #ddd;
+            font-size: 16px;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #1abc9c;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px;
+            background: #1a252f;
+            font-size: 14px;
+        }
+
+        .footer-bottom a {
+            color: #1abc9c;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1200px) {
+            .container, .deals-grid, .featured-category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .right-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .container, .deals-grid, .featured-category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .category-layout {
+                flex-direction: column;
+            }
+
+            .left-section, .right-section {
+                width: 100%;
+            }
+
+            .right-section, .supplier-grid, .blog-grid, .testimonial-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .modal-content {
+                flex-direction: column;
+            }
+
+            .modal-content img {
+                max-width: 100%;
+            }
+
+            .testimonial-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .search-container {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .navbar .buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .container, .deals-grid, .featured-category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter form {
+                flex-direction: column;
+            }
+
+            .newsletter input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="scroll-container" data-scroll-container>
+        <!-- Navbar -->
+        <div class="navbar">
+            <a href="#" class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/IndiaMart_Logo.png" alt="IndiaMart Logo">
+                <h1>IndiaMart</h1>
+            </a>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search products..." onkeyup="filterProducts()" aria-label="Search products">
+                <button onclick="filterProducts()" aria-label="Search">Search</button>
+            </div>
+            <div class="buttons">
+                <button><a href="index.html" class="hover:text-yellow-400 transition animate__animated animate__pulse animate__infinite">home</a></button>
+                <button><a href="shopping.html" class="hover:text-yellow-400 transition animate__animated animate__pulse animate__infinite">Shopping</a><button>
+                <button><a href="sell.html" class="hover:text-yellow-400 transition animate__animated animate__pulse animate__infinite">Sell</a></button>
+                <button><a href="support.html" class="hover:text-yellow-400 transition animate__animated animate__pulse animate__infinite">Support</a></button>
+            </div>
+        </div>
+
+        <!-- Hero Banner -->
+        <section class="hero-banner animate-on-load">
+            <div class="hero-content">
+                <h1>Discover Quality Products on IndiaMart</h1>
+                <p>Connect with trusted suppliers across India</p>
+                <a href="#product-grid" class="btn" style="background: #e74c3c;">Shop Now</a>
+            </div>
+        </section>
+
+        <!-- Featured Categories -->
+        <section class="featured-categories animate-on-scroll">
+            <h2>Featured Categories</h2>
+            <div class="featured-category-grid">
+                <div class="category-card electronics" onclick="filterByCategory('Electronics')" role="button" tabindex="0">
+                    <img src="https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-163100.jpeg" alt="Electronics Category Image">
+                    <h3>Electronics</h3>
+                </div>
+                <div class="category-card construction" onclick="filterByCategory('Construction')" role="button" tabindex="0">
+                    <img src="https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg" alt="Construction Category Image">
+                    <h3>Construction</h3>
+                </div>
+                <div class="category-card fashion" onclick="filterByCategory('Fashion')" role="button" tabindex="0">
+                    <img src="https://images.pexels.com/photos/994234/pexels-photo-994234.jpeg" alt="Fashion Category Image">
+                    <h3>Fashion</h3>
+                </div>
+                <div class="category-card pharmacy" onclick="filterByCategory('Pharmacy')" role="button" tabindex="0">
+                    <img src="https://images.pexels.com/photos/355934/pexels-photo-355934.jpeg" alt="Pharmacy Category Image">
+                    <h3>Pharmacy</h3>
+                </div>
+                <div class="category-card home-kitchen" onclick="filterByCategory('Home & Kitchen')" role="button" tabindex="0">
+                    <img src="https://images.pexels.com/photos/269606/pexels-photo-269606.jpeg" alt="Home & Kitchen Category Image">
+                    <h3>Home & Kitchen</h3>
+                </div>
+                <div class="category-card automotive" onclick="filterByCategory('Automotive')" role="button" tabindex="0">
+                    <img src="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg" alt="Automotive Category Image">
+                    <h3>Automotive</h3>
+                </div>
+            </div>
+            <button onclick="filterByCategory('All')" class="btn" style="margin-top: 20px; background: #3498db;">Show All</button>
+        </section>
+
+        <!-- Product Grid -->
+        <div class="container" id="product-grid"></div>
+
+        <!-- Modal -->
+        <div id="product-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()" aria-label="Close modal">×</span>
+                <img id="modal-img" src="" alt="Product Image" onerror="this.src='https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg'; this.alt='Fallback Product Image';">
+                <div class="modal-details">
+                    <div class="modal-info">
+                        <h2 id="modal-title">Product Title</h2>
+                        <p id="modal-description">Detailed product description...</p>
+                        <p id="modal-price" class="price">₹0</p>
+                        <button class="btn" style="background: #e74c3c;">Contact Supplier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trending Products -->
+        <section class="trending-products animate-on-scroll">
+            <h2>Trending Products</h2>
+            <div class="trending-grid">
+                <div class="trending-card slide-in-left">
+                    <img src="https://images.pexels.com/photos/797793/pexels-photo-797793.jpeg" alt="Smartwatch Image">
+                    <h3>Smartwatch</h3>
+                </div>
+                <div class="trending-card slide-in-right">
+                    <img src="https://images.pexels.com/photos/159298/pexels-photo-159298.jpeg" alt="Power Tools Image">
+                    <h3>Power Tools</h3>
+                </div>
+                <div class="trending-card slide-in-left">
+                    <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg" alt="Designer Shoes Image">
+                    <h3>Designer Shoes</h3>
+                </div>
+                <div class="trending-card slide-in-right">
+                    <img src="https://images.pexels.com/photos/1580267/pexels-photo-1580267.jpeg" alt="Health Supplements Image">
+                    <h3>Health Supplements</h3>
+                </div>
+                <div class="trending-card slide-in-left">
+                    <img src="https://images.pexels.com/photos/1087730/pexels-photo-1087730.jpeg" alt="Air Fryer Image">
+                    <h3>Air Fryer</h3>
+                </div>
+                <div class="trending-card slide-in-right">
+                    <img src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg" alt="Car Accessories Image">
+                    <h3>Car Accessories</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Building Materials & Construction -->
+        <section class="category-section animate-on-scroll">
+            <h2>Building Materials & Construction</h2>
+            <div class="category-layout">
+                <div class="left-section" style="background-image: url('https://images.pexels.com/photos/162624/construction-workers-162624.jpeg');">
+                    <div>
+                        <h2>Construction Equipment</h2>
+                        <a href="#">Prefabricated Houses</a>
+                        <a href="#">Scaffolding Planks</a>
+                        <a href="#">Construction Machines</a>
+                        <a href="#">Crushing Plants</a>
+                    </div>
+                    <a href="viewall.html" class="view-all-btn btn" style="background: #e67e22;">View All</a>
+                </div>
+                <div class="right-section">
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/5691648/pexels-photo-5691648.jpeg" alt="Brick Making Machines Image">
+                        <div class="card-content">
+                            <h2>Brick Making Machines</h2>
+                            <p>Fly Ash Brick Machine, Clay Brick Machine</p>
+                            <button class="btn" style="background: #e67e22;">Explore</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/221027/pexels-photo-221027.jpeg" alt="Passenger Lifts Image">
+                        <div class="card-content">
+                            <h2>Passenger Lifts</h2>
+                            <p>Residential Elevator, Stair Lift</p>
+                            <button class="btn" style="background: #e67e22;">Explore</button>
+                        </div>
+                    </div>
+ 
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/534164/pexels-photo-534164.jpeg" alt="Plywoods Image">
+                        <div class="card-content">
+                            <h2>Plywoods</h2>
+                            <p>Shuttering Plywood, Waterproof Plywood</p>
+                            <button class="btn" style="background: #e67e22;">Explore</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/5691590/pexels-photo-5691590.jpeg" alt="Cement Mixer Image">
+                        <div class="card-content">
+                            <h2>Cement Mixer</h2>
+                            <p>Portable, 500L Capacity</p>
+                            <button class="btn" style="background: #e67e22;">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Electric and Electronic Goods -->
+        <section class="category-section animate-on-scroll">
+            <h2>Electric and Electronic Goods</h2>
+            <div class="category-layout">
+                <div class="left-section" style="background-image: url('https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg');">
+                    <div>
+                        <h2>Electronics & Gadgets</h2>
+                        <a href="#">Voltage Stabilisers</a>
+                        <a href="#">GPS Devices</a>
+                        <a href="#">Biometric Systems</a>
+                        <a href="#">CCTV Systems</a>
+                    </div>
+                    <a href="viewallelectric.html" class="view-all-btn btn" style="background: #3498db;">View All</a>
+                </div>
+                <div class="right-section">
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/51383/photo-camera-subject-photographer-51383.jpeg" alt="Office Automation Products Image">
+                        <div class="card-content">
+                            <h2>Office Automation</h2>
+                            <p>Printers, Scanners, Xerox Machines</p>
+                            <button class="btn" style="background: #3498db;">Explore</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg" alt="Sensors Image">
+                        <div class="card-content">
+                            <h2>Sensors</h2>
+                            <p>Level Sensors, Proximity Sensors</p>
+                            <button class="btn" style="background: #3498db;">Explore</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg" alt="Process Controllers Image">
+                        <div class="card-content">
+                            <h2>Controllers</h2>
+                            <p>Motor Controllers, Temperature Controllers</p>
+                            <button class="btn" style="background: #3498db;">Explore</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg" alt="Samsung 55 inch TV Image">
+                        <div class="card-content">
+                            <h2>Samsung 55" TV</h2>
+                            <p>4K Smart TV with HDR</p>
+                            <button class="btn" style="background: #3498db;">Explore</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/797793/pexels-photo-797793.jpeg" alt="Smartwatch Image">
+                        <div class="card-content">
+                            <h2>Smartwatch</h2>
+                            <p>Fitness Tracking, OLED Display</p>
+                            <button class="btn" style="background: #3498db;">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fashion and Apparel -->
+        <section class="category-section animate-on-scroll">
+            <h2>Fashion and Apparel</h2>
+            <div class="category-layout">
+                <div class="left-section" style="background-image: url('https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg');">
+                    <div>
+                        <h2>Trendy Fashion</h2>
+                        <a href="#">Designer Sarees</a>
+                        <a href="#">Formal Shirts</a>
+                        <a href="#">Leather Jackets</a>
+                        <a href="#">Sneakers</a>
+                    </div>
+                    <a href="viewallfashion.html" class="view-all-btn btn" style="background: #e91e63;">View All</a>
+                </div>
+                <div class="right-section">
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg" alt="Designer Saree Image">
+                        <div class="card-content">
+                            <h2>Designer Saree</h2>
+                            <p>Silk, Handwoven</p>
+                            <button class="btn" style="background: #e91e63;">Explore</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg" alt="Formal Shirt Image">
+                        <div class="card-content">
+                            <h2>Formal Shirt</h2>
+                            <p>Cotton, Slim Fit</p>
+                            <button class="btn" style="background: #e91e63;">Explore</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/1124465/pexels-photo-1124465.jpeg" alt="Leather Jacket Image">
+                        <div class="card-content">
+                            <h2>Leather Jacket</h2>
+                            <p>Genuine Leather, Stylish</p>
+                            <button class="btn" style="background: #e91e63;">Explore</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg" alt="Nike Air Max Image">
+                        <div class="card-content">
+                            <h2>Nike Air Max</h2>
+                            <p>Running Shoes, Comfortable</p>
+                            <button class="btn" style="background: #e91e63;">Explore</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg" alt="Handbag Image">
+                        <div class="card-content">
+                            <h2>Handbag</h2>
+                            <p>Leather, Spacious</p>
+                            <button class="btn" style="background: #e91e63;">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supplier Spotlight -->
+        <section class="supplier-spotlight animate-on-scroll">
+            <h2>Supplier Spotlight</h2>
+            <div class="supplier-grid">
+                <div class="supplier-card spin">
+                    <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg" alt="TechTrend Innovations Image">
+                    <h3>TechTrend Innovations</h3>
+                    <p>Leading supplier of electronics and gadgets.</p>
+                    <button class="btn" style="background: #3498db;">View Profile</button>
+                </div>
+                <div class="supplier-card spin" style="animation-delay: 0.2s;">
+                    <img src="https://images.pexels.com/photos/159538/construction-worker-159538.jpeg" alt="BuildStrong Materials Image">
+                    <h3>BuildStrong Materials</h3>
+                    <p>Top provider of construction materials.</p>
+                    <button class="btn" style="background: #e67e22;">View Profile</button>
+                </div>
+                <div class="supplier-card spin" style="animation-delay: 0.4s;">
+                    <img src="https://images.pexels.com/photos/301703/pexels-photo-301703.jpeg" alt="FashionHub Image">
+                    <h3>FashionHub</h3>
+                    <p>Premium fashion and apparel supplier.</p>
+                    <button class="btn" style="background: #e91e63;">View Profile</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deals of the Day -->
+        <section class="deals animate-on-scroll">
+            <h2>Deals of the Day</h2>
+            <div class="deals-grid">
+                <div class="deal-card glow">
+                    <img src="https://images.pexels.com/photos/205926/pexels-photo-205926.jpeg" alt="MacBook Air Deal Image">
+                    <h3>MacBook Air</h3>
+                    <p class="discount">20% Off</p>
+                    <button class="btn" style="background: #3498db;">Grab Deal</button>
+                </div>
+                <div class="deal-card glow">
+                    <img src="https://images.pexels.com/photos/5691590/pexels-photo-5691590.jpeg" alt="UltraTech Cement Deal Image">
+                    <h3>UltraTech Cement</h3>
+                    <p class="discount">15% Off</p>
+                    <button class="btn" style="background: #e67e22;">Grab Deal</button>
+                </div>
+                <div class="deal-card glow">
+                    <img src="https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg" alt="Designer Handbag Deal Image">
+                    <h3>Designer Handbag</h3>
+                    <p class="discount">30% Off</p>
+                    <button class="btn" style="background: #e91e63;">Grab Deal</button>
+                </div>
+                <div class="deal-card glow">
+                    <img src="https://images.pexels.com/photos/593324/pexels-photo-593324.jpeg" alt="Pain Relief Gel Deal Image">
+                    <h3>Pain Relief Gel</h3>
+                    <p class="discount">25% Off</p>
+                    <button class="btn" style="background: #2ecc71;">Grab Deal</button>
+                </div>
+                <div class="deal-card glow">
+                    <img src="https://images.pexels.com/photos/2791416/pexels-photo-2791416.jpeg" alt="Mixer Grinder Deal Image">
+                    <h3>Mixer Grinder</h3>
+                    <p class="discount">35% Off</p>
+                    <button class="btn" style="background: #9b59b6;">Grab Deal</button>
+                </div>
+                <div class="deal-card glow">
+                    <img src="https://images.pexels.com/photos/1715572/pexels-photo-1715572.jpeg" alt="Car Tyres Deal Image">
+                    <h3>Car Tyres</h3>
+                    <p class="discount">20% Off</p>
+                    <button class="btn" style="background: #c0392b;">Grab Deal</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Highlights -->
+        <section class="blog-highlights animate-on-scroll">
+            <h2>Industry Insights</h2>
+            <div class="blog-grid">
+                <div class="blog-card" style="animation-delay: 0.1s;">
+                    <img src="https://images.pexels.com/photos/373076/pexels-photo-373076.jpeg" alt="Future of Electronics Blog Image">
+                    <h3>Future of Electronics</h3>
+                    <p>Explore the latest trends in tech innovation.</p>
+                    <a href="#" class="btn" style="background: #3498db;">Read More</a>
+                </div>
+                <div class="blog-card" style="animation-delay: 0.2s;">
+                    <img src="https://images.pexels.com/photos/159213/construction-worker-159213.jpeg" alt="Green Building Trends Blog Image">
+                    <h3>Green Building Trends</h3>
+                    <p>Learn about sustainable construction practices.</p>
+                    <a href="#" class="btn" style="background: #e67e22;">Read More</a>
+                </div>
+                <div class="blog-card" style="animation-delay: 0.3s;">
+                    <img src="https://images.pexels.com/photos/3255761/pexels-photo-3255761.jpeg" alt="Fashion Forward Blog Image">
+                    <h3>Fashion Forward</h3>
+                    <p>Discover the latest in apparel design.</p>
+                    <a href="#" class="btn" style="background: #e91e63;">Read More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials animate-on-scroll">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg" alt="Rahul Sharma Avatar">
+                    <div>
+                        <p>"IndiaMart helped me find reliable suppliers for my business. The platform is easy to use and highly effective!"</p>
+                        <h4>Rahul Sharma</h4>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="Priya Patel Avatar">
+                    <div>
+                        <p>"The variety of products and competitive prices on IndiaMart are unmatched. Highly recommended!"</p>
+                        <h4>Priya Patel</h4>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg" alt="Amit Kumar Avatar">
+                    <div>
+                        <p>"I connected with trusted sellers and got my orders delivered on time. Great experience!"</p>
+                        <h4>Amit Kumar</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section class="newsletter animate-on-scroll">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get the latest deals and updates straight to your inbox!</p>
+            <form>
+                <input type="email" placeholder="Enter your email" required aria-label="Email address">
+                <button type="submit" style="background: #e74c3c;">Subscribe</button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-top">
+                <h2>We are here to help you!</h2>
+                <div class="icons">
+                    <span>Go Mobile:</span>
+                    <img src="https://img.icons8.com/ios-filled/50/000000/apple-app-store.png" alt="App Store Icon">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/google-play.png" alt="Google Play Icon">
+                    <span>Follow us on:</span>
+                    <img src="https://img.icons8.com/ios-filled/50/3b5998/facebook.png" alt="Facebook Icon">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/twitter.png" alt="Twitter Icon">
+                    <img src="https://img.icons8.com/ios-filled/50/0077b5/linkedin.png" alt="LinkedIn Icon">
+                </div>
+            </div>
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <a href="#">Join Sales</a>
+                    <a href="#">Success Stories</a>
+                    <a href="#">Press Section</a>
+                    <a href="#">Advertise with Us</a>
+                    <a href="#">Investor Section</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Help</h3>
+                    <a href="#">Feedback</a>
+                    <a href="#">Complaints</a>
+                    <a href="#">Customer Care</a>
+                    <a href="#">Jobs & Careers</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Suppliers Tool Kit</h3>
+                    <a href="#">Sell on IndiaMART</a>
+                    <a href="#">Latest BuyLead</a>
+                    <a href="#">Learning Centre</a>
+                    <a href="#">Ship With IndiaMART</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Buyers Tool Kit</h3>
+                    <a href="#">Post Your Requirement</a>
+                    <a href="#">Products You Buy</a>
+                    <a href="#">Search Products & Suppliers</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Accounting Solutions</h3>
+                    <a href="#">Accounting Software</a>
+                    <a href="#">Tally on Mobile</a>
+                    <a href="#">GST e-Invoice</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 1996-2025 IndiaMART InterMESH Ltd. All rights reserved.</p>
+                <a href="#">Terms of Use</a> |
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Link to Us</a>
+            </div>
+        </div>
+
+        <!-- Back to Top Button -->
+        <div class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">↑</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/locomotive-scroll/4.2.2/locomotive-scroll.min.js"></script>
+    <script>
+        // Product Data
+        const products = [
+            // Electronics
+            { id: 1, name: "iPhone 15 Pro", price: "₹1,20,000", img: "https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg", description: "iOS, 128 GB, 6.1 Inches", company: "Apple", category: "Electronics" },
+            { id: 2, name: "Samsung Galaxy S23", price: "₹90,000", img: "https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg", description: "Android, Snapdragon, 256 GB", company: "Samsung", category: "Electronics" },
+            { id: 3, name: "Sony Headphones", price: "₹15,000", img: "https://images.pexels.com/photos/205926/pexels-photo-205926.jpeg", description: "Noise-cancelling, over-ear", company: "Sony", category: "Electronics" },
+            { id: 4, name: "Dell XPS 15", price: "₹1,50,000", img: "https://images.pexels.com/photos/797793/pexels-photo-797793.jpeg", description: "Intel i9, OLED display", company: "Dell", category: "Electronics" },
+            { id: 5, name: "Smart TV 55\"", price: "₹65,000", img: "https://images.pexels.com/photos/333986/pexels-photo-333986.jpeg", description: "4K, HDR, Smart features", company: "LG", category: "Electronics" },
+            { id: 6, name: "Wireless Speaker", price: "₹8,000", img: "https://images.pexels.com/photos/1042143/pexels-photo-1042143.jpeg", description: "Bluetooth, 20W output", company: "JBL", category: "Electronics" },
+            // Construction
+            { id: 7, name: "Brick Making Machine", price: "₹5,00,000", img: "https://images.pexels.com/photos/5691648/pexels-photo-5691648.jpeg", description: "Automatic, high capacity", company: "BuildTech", category: "Construction" },
+            { id: 8, name: "TMT Bars", price: "₹50,000/ton", img: "https://images.pexels.com/photos/5340280/pexels-photo-5340280.jpeg", description: "High-strength steel bars", company: "TATA Steel", category: "Construction" },
+            { id: 9, name: "Cement Mixer", price: "₹2,00,000", img: "https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg", description: "Portable, 500L capacity", company: "UltraTech", category: "Construction" },
+            { id: 10, name: "Plywood Sheets", price: "₹2,000/sheet", img: "https://images.pexels.com/photos/534164/pexels-photo-534164.jpeg", description: "Waterproof, high durability", company: "GreenPly", category: "Construction" },
+            { id: 11, name: "Scaffolding", price: "₹10,000/set", img: "https://images.pexels.com/photos/162624/construction-workers-162624.jpeg", description: "Steel, adjustable", company: "ScaffoldPro", category: "Construction" },
+            { id: 12, name: "Concrete Pump", price: "₹15,00,000", img: "https://images.pexels.com/photos/4507718/pexels-photo-4507718.jpeg", description: "High-pressure, 50m reach", company: "Schwing", category: "Construction" },
+            // Fashion
+            { id: 13, name: "Nike Air Max", price: "₹12,000", img: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg", description: "Running shoes, comfortable", company: "Nike", category: "Fashion" },
+            { id: 14, name: "Leather Jacket", price: "₹8,000", img: "https://images.pexels.com/photos/1124465/pexels-photo-1124465.jpeg", description: "Genuine leather, stylish", company: "Zara", category: "Fashion" },
+            { id: 15, name: "Designer Saree", price: "₹15,000", img: "https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg", description: "Silk, handwoven", company: "FabIndia", category: "Fashion" },
+            { id: 16, name: "Sunglasses", price: "₹3,500", img: "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg", description: "UV protection, trendy", company: "Ray-Ban", category: "Fashion" },
+            { id: 17, name: "Handbag", price: "₹5,000", img: "https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg", description: "Leather, spacious", company: "Baggit", category: "Fashion" },
+            { id: 18, name: "Formal Shirt", price: "₹2,500", img: "https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg", description: "Cotton, slim fit", company: "Arrow", category: "Fashion" },
+            // Pharmacy
+            { id: 19, name: "Vitamin C Tablets", price: "₹500", img: "https://images.pexels.com/photos/593324/pexels-photo-593324.jpeg", description: "Immune booster, 1000mg", company: "HealthKart", category: "Pharmacy" },
+            { id: 20, name: "Pain Relief Gel", price: "₹300", img: "https://images.pexels.com/photos/3683098/pexels-photo-3683098.jpeg", description: "Fast-acting, non-greasy", company: "Volini", category: "Pharmacy" },
+            { id: 21, name: "Blood Pressure Monitor", price: "₹2,500", img: "https://images.pexels.com/photos/4386464/pexels-photo-4386464.jpeg", description: "Digital, accurate", company: "Omron", category: "Pharmacy" },
+            { id: 22, name: "Protein Supplement", price: "₹2,000", img: "https://images.pexels.com/photos/1580267/pexels-photo-1580267.jpeg", description: "Whey protein, 1kg", company: "MuscleBlaze", category: "Pharmacy" },
+            { id: 23, name: "Face Masks", price: "₹100/pack", img: "https://images.pexels.com/photos/3952067/pexels-photo-3952067.jpeg", description: "3-ply, 50 pieces", company: "Durex", category: "Pharmacy" },
+            { id: 24, name: "Glucometer", price: "₹1,200", img: "https://images.pexels.com/photos/4162577/pexels-photo-4162577.jpeg", description: "Accurate, easy to use", company: "Accu-Chek", category: "Pharmacy" },
+            // Home & Kitchen
+            { id: 25, name: "Air Fryer", price: "₹7,000", img: "https://images.pexels.com/photos/1087730/pexels-photo-1087730.jpeg", description: "3L, oil-free cooking", company: "Philips", category: "Home & Kitchen" },
+            { id: 26, name: "Mixer Grinder", price: "₹4,500", img: "https://images.pexels.com/photos/2791416/pexels-photo-2791416.jpeg", description: "750W, 3 jars", company: "Prestige", category: "Home & Kitchen" },
+            { id: 27, name: "Non-Stick Cookware", price: "₹3,000", img: "https://images.pexels.com/photos/2728672/pexels-photo-2728672.jpeg", description: "3-piece set, durable", company: "Wonderchef", category: "Home & Kitchen" },
+            { id: 28, name: "Water Purifier", price: "₹12,000", img: "https://images.pexels.com/photos/374710/pexels-photo-374710.jpeg", description: "RO+UV, 7L", company: "Kent", category: "Home & Kitchen" },
+            { id: 29, name: "Dinner Set", price: "₹5,000", img: "https://images.pexels.com/photos/279609/pexels-photo-279609.jpeg", description: "Porcelain, 24 pieces", company: "La Opala", category: "Home & Kitchen" },
+            { id: 30, name: "Electric Kettle", price: "₹1,500", img: "https://images.pexels.com/photos/3375658/pexels-photo-3375658.jpeg", description: "1.8L, stainless steel", company: "Havells", category: "Home & Kitchen" },
+            // Automotive
+            { id: 31, name: "Car Tyres", price: "₹6,000/unit", img: "https://images.pexels.com/photos/1715572/pexels-photo-1715572.jpeg", description: "Tubeless, 16-inch", company: "Michelin", category: "Automotive" },
+            { id: 32, name: "Car Battery", price: "₹5,500", img: "https://images.pexels.com/photos/3806241/pexels-photo-3806241.jpeg", description: "12V, 45Ah", company: "Exide", category: "Automotive" },
+            { id: 33, name: "Dash Camera", price: "₹4,000", img: "https://images.pexels.com/photos/35967/mini-cooper-auto-model-vehicle.jpg", description: "1080p, night vision", company: "YI", category: "Automotive" },
+            { id: 34, name: "Seat Covers", price: "₹3,500", img: "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg", description: "Leather, universal fit", company: "AutoFurnish", category: "Automotive" },
+            { id: 35, name: "Car Air Purifier", price: "₹2,500", img: "https://images.pexels.com/photos/3155666/pexels-photo-3155666.jpeg", description: "HEPA filter, compact", company: "Philips", category: "Automotive" },
+            { id: 36, name: "Tool Kit", price: "₹2,000", img: "https://images.pexels.com/photos/162553/pexels-photo-162553.jpeg", description: "50-piece, automotive", company: "Taparia", category: "Automotive" }
+        ];
+
+        // Display Products
+        const grid = document.getElementById("product-grid");
+        function displayProducts(items) {
+            grid.innerHTML = "";
+            items.forEach((product, index) => {
+                const card = document.createElement("div");
+                card.classList.add("card", "animate-on-scroll");
+                card.style.animationDelay = `${index * 0.05}s`;
+                card.innerHTML = `
+                    <img src="${product.img}" alt="${product.name} Image" onclick="openModal('${product.img}', '${product.name}', '${product.description}', '${product.price}')" loading="lazy">
+                    <div class="card-content">
+                        <h2>${product.name}</h2>
+                        <p class="company">${product.company}</p>
+                        <p class="price">${product.price}</p>
+                        <button class="btn" style="background: ${
+                            product.category === 'Electronics' ? '#3498db' :
+                            product.category === 'Construction' ? '#e67e22' :
+                            product.category === 'Fashion' ? '#e91e63' :
+                            product.category === 'Pharmacy' ? '#2ecc71' :
+                            product.category === 'Home & Kitchen' ? '#9b59b6' :
+                            '#c0392b'
+                        };">Contact Supplier</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Category Filtering
+        function filterByCategory(category) {
+            let filtered = products;
+            if (category !== 'All') {
+                filtered = products.filter(p => p.category === category);
+            }
+            displayProducts(filtered);
+        }
+
+        // Modal Functions
+        function openModal(img, title, description, price) {
+            try {
+                document.getElementById("modal-img").src = img || 'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg';
+                document.getElementById("modal-img").alt = title ? `${title} Image` : 'Fallback Product Image';
+                document.getElementById("modal-title").innerText = title || 'Unknown Product';
+                document.getElementById("modal-description").innerHTML = description || 'No description available.';
+                document.getElementById("modal-price").innerText = price || '₹0';
+                document.getElementById("product-modal").style.display = "block";
+            } catch (error) {
+                console.error("Error opening modal:", error);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById("product-modal").style.display = "none";
+        }
+
+        // Close Modal on Outside Click
+        window.addEventListener('click', (event) => {
+            const modal = document.getElementById("product-modal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Search Functionality
+        function filterProducts() {
+            try {
+                const searchTerm = document.getElementById("search").value.toLowerCase().trim();
+                const filtered = products.filter(p => 
+                    p.name.toLowerCase().includes(searchTerm) || 
+                    p.company.toLowerCase().includes(searchTerm)
+                );
+                displayProducts(filtered.length > 0 ? filtered : products);
+            } catch (error) {
+                console.error("Error filtering products:", error);
+                displayProducts(products);
+            }
+        }
+
+        // Scroll Animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll(".animate-on-scroll");
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    el.style.opacity = "1";
+                    el.style.animationPlayState = "running";
+                }
+            });
+        };
+
+        // Sticky Navbar and Back-to-Top
+        const navbar = document.querySelector(".navbar");
+        const backToTop = document.querySelector(".back-to-top");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add("scrolled");
+                backToTop.style.display = "block";
+            } else {
+                navbar.classList.remove("scrolled");
+                backToTop.style.display = "none";
+            }
+            animateOnScroll();
+        });
+
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        // Keyboard Accessibility for Category Cards
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    card.click();
+                }
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            displayProducts(products);
+            animateOnScroll();
+
+            // Locomotive Scroll
+            try {
+                const scrollContainer = document.querySelector('[data-scroll-container]');
+                if (!scrollContainer) {
+                    throw new Error('Scroll container not found');
+                }
+                const scroll = new LocomotiveScroll({
+                    el: scrollContainer,
+                    smooth: true,
+                    getDirection: true
+                });
+                scroll.on('scroll', animateOnScroll);
+            } catch (error) {
+                console.error('Error initializing Locomotive Scroll:', error.message, error.stack);
+            }
+        });
+    </script>
+</body>
+</html>

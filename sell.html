@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sell for free on IndiaMART, India's largest B2B marketplace. Connect with millions of verified buyers and grow your business with zero transaction fees.">
+    <meta name="keywords" content="IndiaMART, B2B marketplace, sell online, business growth, zero cost selling">
+    <title>IndiaMART - Sell Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-slideIn {
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        .animate-zoomIn {
+            animation: zoomIn 0.6s ease-out forwards;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 0;
+        }
+
+        /* Button Hover Animation */
+        .btn-primary {
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            background-color: #005bb5;
+            box-shadow: 8px 10px 15px rgba(0, 91, 181, 0.4);
+        }
+
+        /* Card Hover Animation */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Form Input Animation */
+        .form-input {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+            outline: none;
+        }
+
+        /* Parallax Background Fallback */
+        .parallax {
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            background-attachment: fixed;
+        }
+
+        @media (max-width: 768px) {
+            .parallax {
+                background-attachment: scroll; /* Fallback for mobile */
+            }
+        }
+
+        .parallax::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Logo Animation */
+        .logo {
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar fixed top-0 left-0 w-full bg-white z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" aria-label="IndiaMART Home">
+                <svg class="logo h-12" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="10" y="35" font-family="Inter, sans-serif" font-size="24" font-weight="bold" fill="#007bff">IndiaMART</text>
+                    <circle cx="180" cy="25" r="10" fill="#ff6200"/>
+                    <circle cx="180" cy="25" r="5" fill="#ffffff"/>
+                </svg>
+            </a>
+            <div class="space-x-6">
+                <a href="index.html" class="text-gray-700 hover:text-blue-600 font-semibold">Home</a>
+                <a href="explore.html" class="text-gray-700 hover:text-blue-600 font-semibold">explore</a>
+                <a href="shopping.html" class="text-gray-700 hover:text-blue-600 font-semibold">shopping</a>
+                <a href="support.html" class="text-gray-700 hover:text-blue-600 font-semibold">support</a>
+                <a href="#faq" class="text-gray-700 hover:text-blue-600 font-semibold">FAQ</a>
+                <a href="#registration" class="btn-primary bg-blue-600 text-white py-2 px-4 rounded-lg">Start Selling</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="section bg-gradient-to-r from-blue-700 to-indigo-800 text-white parallax" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3');">
+        <div class="container mx-auto px-6 text-center parallax-content animate-fadeIn">
+            <svg class="logo h-16 mx-auto mb-6" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="10" y="35" font-family="Inter, sans-serif" font-size="24" font-weight="bold" fill="#ffffff">IndiaMART</text>
+                <circle cx="180" cy="25" r="10" fill="#ff6200"/>
+                <circle cx="180" cy="25" r="5" fill="#ffffff"/>
+            </svg>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Sell Smarter with IndiaMART</h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">Connect with millions of verified buyers and scale your business with zero transaction fees on India’s leading B2B marketplace.</p>
+            <a href="#registration" class="btn-primary inline-block bg-white text-blue-700 font-semibold py-4 px-10 rounded-full text-lg">Get Started for Free</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-gray-800 text-center mb-12 animate-fadeIn">Our Impact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3048/3048136.png" alt="Verified Buyers" class="w-20 mx-auto mb-6">
+                    <h2 class="text-4xl font-bold text-blue-600">20.6 Crore+</h2>
+                    <p class="text-gray-600 text-lg">Verified Buyers</p>
+                </div>
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn" style="animation-delay: 0.2s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4290/4290225.png" alt="Trusted Suppliers" class="w-20 mx-auto mb-6">
+                    <h2 class="text-4xl font-bold text-blue-600">82 Lakh+</h2>
+                    <p class="text-gray-600 text-lg">Trusted Suppliers</p>
+                </div>
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn" style="animation-delay: 0.4s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/679/679669.png" alt="Products and Services" class="w-20 mx-auto mb-6">
+                    <h2 class="text-4xl font-bold text-blue-600">11.5 Crore+</h2>
+                    <p class="text-gray-600 text-lg">Products & Services</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="registration" class="section bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center bg-white p-10 rounded-2xl shadow-xl animate-slideIn">
+                <div class="md:w-2/3 text-center md:text-left">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Start Selling Today</h2>
+                    <p class="text-gray-600 text-lg mb-6">Sign up with your mobile number and unlock the power of IndiaMART’s B2B platform for free.</p>
+                </div>
+                <div class="md:w-1/3">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-600 font-semibold">+91</span>
+                        <input type="tel" placeholder="Enter 10 digit mobile number" class="form-input w-full p-4 border rounded-lg text-lg" pattern="[0-9]{10}" required>
+                        <button class="btn-primary bg-blue-600 text-white font-semibold py-4 px-8 rounded-lg text-lg">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12 animate-fadeIn">Why Choose IndiaMART?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="Expand Your Reach" class="w-20 mx-auto mb-6">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Expand Your Reach</h3>
+                    <p class="text-gray-600">Connect with buyers across India and globally, 24/7.</p>
+                </div>
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn" style="animation-delay: 0.2s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png" alt="Zero Cost Selling" class="w-20 mx-auto mb-6">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Zero Cost Selling</h3>
+                    <p class="text-gray-600">No commission or hidden fees—just pure business growth.</p>
+                </div>
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn" style="animation-delay: 0.4s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/814/814513.png" alt="Smart Lead Management" class="w-20 mx-auto mb-6">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Smart Lead Management</h3>
+                    <p class="text-gray-600">Streamline inquiries with our advanced tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section id="steps" class="section bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12 animate-fadeIn">Get Listed in 3 Easy Steps</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="card p-8 bg-white rounded-xl shadow-md animate-zoomIn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1008/1008909.png" alt="Create Account" class="w-20 mx-auto mb-6">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4"><a href="#create" class="hover:underline">Create Account</a></h3>
+                    <p class="text-gray-600">Sign up with your name and phone number.</p>
+                </div>
+                <div class="card p-8 bg-white rounded-xl shadow-md animate-zoomIn" style="animation-delay: 0.2s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4290/4290225.png" alt="Add Business" class="w-20 mx-auto mb-6">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4"><a href="#business" class="hover:underline">Add Business</a></h3>
+                    <p class="text-gray-600">Provide your company’s name, address, and email.</p>
+                </div>
+                <div class="card p-8 bg-white rounded-xl shadow-md animate-zoomIn" style="animation-delay: 0.4s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/679/679669.png" alt="Add Products" class="w-20 mx-auto mb-6">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4"><a href="#products" class="hover:underline">Add Products</a></h3>
+                    <p class="text-gray-600">List at least 3 products or services to start selling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section id="testimonials" class="section bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12 animate-fadeIn">Success Stories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Amit Singh" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover">
+                    <p class="text-gray-600 italic mb-4">"IndiaMART transformed our business, connecting us with buyers nationwide. Our revenue tripled in a year!"</p>
+                    <p class="font-semibold text-blue-600">Amit Singh</p>
+                    <p class="text-gray-500">Founder, Singh Exports</p>
+                </div>
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn" style="animation-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Neha Gupta" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover">
+                    <p class="text-gray-600 italic mb-4">"The platform’s tools made managing leads effortless. We now focus on growth, not paperwork."</p>
+                    <p class="font-semibold text-blue-600">Neha Gupta</p>
+                    <p class="text-gray-500">CEO, Gupta Industries</p>
+                </div>
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn" style="animation-delay: 0.4s;">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7" alt="Vikram Patel" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover">
+                    <p class="text-gray-600 italic mb-4">"Zero-cost selling allowed us to scale without financial strain. IndiaMART is a game-changer."</p>
+                    <p class="font-semibold text-blue-600">Vikram Patel</p>
+                    <p class="text-gray-500">Director, Patel Ventures</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12 animate-fadeIn">Benefits of Selling on IndiaMART</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="card p-8 bg-white rounded-xl shadow-md animate-zoomIn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Advanced Analytics" class="w-20 mx-auto mb-6">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Advanced Analytics</h3>
+                    <p class="text-gray-600">Track performance and buyer behavior with real-time insights.</p>
+                </div>
+                <div class="card p-8 bg-white rounded-xl shadow-md animate-zoomIn" style="animation-delay: 0.2s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/893/893078.png" alt="24/7 Support" class="w-20 mx-auto mb-6">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">24/7 Support</h3>
+                    <p class="text-gray-600">Get expert assistance anytime to keep your business running smoothly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Solutions Section -->
+    <section class="section bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12 animate-fadeIn">Tailored for Your Industry</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2286/2286987.png" alt="Manufacturing Industry" class="w-20 mx-auto mb-6">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Manufacturing</h3>
+                    <p class="text-gray-600">Showcase industrial products to bulk buyers with ease.</p>
+                </div>
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn" style="animation-delay: 0.2s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2921/2921830.png" alt="Textiles Industry" class="w-20 mx-auto mb-6">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Textiles</h3>
+                    <p class="text-gray-600">Reach retailers and wholesalers with your fabric collections.</p>
+                </div>
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn" style="animation-delay: 0.4s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2921/2921828.png" alt="Electronics Industry" class="w-20 mx-auto mb-6">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Electronics</h3>
+                    <p class="text-gray-600">Market gadgets and components to a global audience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center animate-fadeIn">Frequently Asked Questions</h2>
+            <div class="space-y-8">
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Is selling on IndiaMART free?</h3>
+                    <p class="text-gray-600">Absolutely, there are no commission or transaction fees for listing and selling.</p>
+                </div>
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">How fast can I start selling?</h3>
+                    <p class="text-gray-600">You can begin selling within minutes after creating an account and listing products.</p>
+                </div>
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn" style="animation-delay: 0.4s;">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">What support does IndiaMART offer?</h3>
+                    <p class="text-gray-600">We provide 24/7 support, lead management tools, and resources to help you succeed.</p>
+                </div>
+                <div class="card p-8 bg-gray-50 rounded-xl animate-zoomIn" style="animation-delay: 0.6s;">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Can I sell internationally?</h3>
+                    <p class="text-gray-600">Yes, IndiaMART connects you with buyers both in India and globally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="section bg-blue-600 text-white">
+        <div class="container mx-auto px-6 text-center animate-fadeIn">
+            <svg class="logo h-12 mx-auto mb-6" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="10" y="35" font-family="Inter, sans-serif" font-size="24" font-weight="bold" fill="#ffffff">IndiaMART</text>
+                <circle cx="180" cy="25" r="10" fill="#ff6200"/>
+                <circle cx="180" cy="25" r="5" fill="#ffffff"/>
+            </svg>
+            <h2 class="text-4xl font-bold mb-6">Ready to Grow Your Business?</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Join IndiaMART today and start selling to millions of buyers with no cost. Your success is just a click away!</p>
+            <a href="#registration" class="btn-primary inline-block bg-white text-blue-700 font-semibold py-4 px-10 rounded-full text-lg">Start Selling Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <svg class="logo h-12 mb-4" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="10" y="35" font-family="Inter, sans-serif" font-size="24" font-weight="bold" fill="#ffffff">IndiaMART</text>
+                        <circle cx="180" cy="25" r="10" fill="#ff6200"/>
+                        <circle cx="180" cy="25" r="5" fill="#ffffff"/>
+                    </svg>
+                    <p class="text-gray-400">India’s largest B2B marketplace connecting buyers and sellers worldwide.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#hero" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
+                        <li><a href="#steps" class="text-gray-400 hover:text-white">How It Works</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" aria-label="Facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" class="w-8 h-8"></a>
+                        <a href="#" aria-label="Twitter"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Twitter" class="w-8 h-8"></a>
+                        <a href="#" aria-label="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="LinkedIn" class="w-8 h-8"></a>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-gray-400 mt-10">© 2025 IndiaMART. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add scrolled class to navbar on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+</body>
+</html>
